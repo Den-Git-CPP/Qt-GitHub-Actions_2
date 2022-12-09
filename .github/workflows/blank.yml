@@ -35,3 +35,11 @@ jobs:
       with:
         tag_name: ${{ github.run_number}}
         release_name: Release ${{ github.run_number }}
+    - name: Upload release Asset
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+       upload_url: ${{ steps.create-new-release.outputs.upload_url }}
+       asset_path: ./my-artifact.zip
+       asset_name: My-artifact-v${{ github.run_number }}.zip
+       asset_content_type: application/zip
