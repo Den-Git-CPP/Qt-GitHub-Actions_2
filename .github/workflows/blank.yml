@@ -12,6 +12,8 @@ jobs:
       - name: Run a one-line script
       - run: mkdir -p path/to/artifact
       - run: echo hello > path/to/artifact/world.txt
+      
+      # Runs a single command using the runners shell
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
