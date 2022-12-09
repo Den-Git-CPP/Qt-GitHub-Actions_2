@@ -14,4 +14,4 @@ jobs:
     - name: Upload   
       uses: actions/upload-artifact@v3
       with:
-       path: world.txt
+       path: path/to/artifact/world.txt
