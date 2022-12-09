@@ -2,7 +2,7 @@ name: CI
 on: push
 jobs:
   build-project:
-    name: First
+    name: Build_Project
     runs-on: ubuntu-latest
     steps:
     - name: install
@@ -14,4 +14,19 @@ jobs:
     - name: Upload   
       uses: actions/upload-artifact@v3
       with:
+       name: my-artifact
        path: path/to/artifact/world.txt
+  
+  release-project:
+    name: Release Project
+    runs-on: ubuntu-latest
+    needs: build-project
+    steps:
+    - name: Download arifact
+      uses: actions/download-artifact@v3
+      with:
+        name: my-artifact
+    - name: Display structure of downloaded files
+      run: ls -R
+     
+    
