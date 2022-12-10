@@ -26,8 +26,12 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: my-artifact
-    - name: Display structure of downloaded files
-      run: ls -R
+        
+    - name: Archive artifact
+      uses: thedoctor0/zip-release@main
+      with:
+       filename: 'My-artifact.zip'
+       
     - name: Create GitHub Release
       id: create-new-release
       uses: actions/create-release@v1
@@ -43,6 +47,6 @@ jobs:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
        upload_url: ${{ steps.create-new-release.outputs.upload_url }}
-       asset_path: path/to/artifact/
+       asset_path: ./My-artifact.zip
        asset_name: My-artifact-v${{ github.run_number }}.zip
        asset_content_type: application/zip
